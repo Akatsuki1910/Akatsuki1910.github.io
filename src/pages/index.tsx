@@ -1,12 +1,12 @@
+import React, {FC} from 'react'
 import Head from 'next/head'
-// import styled from 'styled-components'
-import styles from '../styles/Home.module.scss'
+import styles from '../../styles/Home.module.scss'
 
-export default function Home() {
+const Home: FC = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>HomePage</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -17,4 +17,5 @@ export default function Home() {
       </main>
     </div>
   )
-}
+} 
+export default Home;
