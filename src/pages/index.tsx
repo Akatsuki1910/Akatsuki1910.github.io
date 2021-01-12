@@ -1,5 +1,6 @@
 import React, {FC} from 'react'
-import Head from 'next/head'
+import loadable from '@loadable/component'
+const Head = loadable(() => import('next/head'))
 import styles from '../../styles/Home.module.scss'
 
 const Home: FC = () => {
@@ -17,5 +18,6 @@ const Home: FC = () => {
       </main>
     </div>
   )
-} 
-export default Home;
+}
+
+export default Home
