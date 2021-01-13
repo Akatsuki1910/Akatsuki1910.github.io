@@ -1,19 +1,12 @@
 import React, {FC} from 'react'
-import loadable from '@loadable/component'
-const Head = loadable(() => import('next/head'))
 import styles from '../../styles/Home.module.scss'
 
-const Home: FC = () => {
+const Home: FC = ({text}:any) => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>HomePage</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to My HomePage
+          {text}
         </h1>
       </main>
     </div>
@@ -21,3 +14,11 @@ const Home: FC = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  const text = 'Welcome to My HomePage'
+
+  return {
+    props: { text },
+  }
+}
