@@ -1,6 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
 import {AppProps} from 'next/app'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+library.add(fab)
+
 import '../../styles/globals.scss'
 
 const App = ({Component, pageProps}: AppProps) => {
