@@ -22,10 +22,10 @@ var w = c.width = window.innerWidth,
     [0, -1],
     [-1, 0],
     // diagonals, 0.7 = sin(PI/4) = cos(PI/4)
-    [.7, .7],
-    [.7, -.7],
-    [-.7, .7],
-    [-.7, -.7]
+    [0.7, 0.7],
+    [0.7, -0.7],
+    [-0.7, 0.7],
+    [-0.7, -0.7]
   ],
   starter = { // starting parent line, just a pseudo line
 
@@ -40,8 +40,9 @@ function init() {
 
   lines.length = 0;
 
-  for (var i = 0; i < initialLines; ++i)
+  for (var i = 0; i < initialLines; ++i){
     lines.push(new Line(starter));
+  }
 
   ctx.fillStyle = '#222';
   ctx.fillRect(0, 0, w, h);
@@ -51,7 +52,6 @@ function init() {
 }
 
 function getColor(x) {
-
   return 'hsl( hue, 80%, 50% )'.replace(
     'hue', x / w * 360 + frame
   );
@@ -66,9 +66,9 @@ function anim() {
   ctx.shadowBlur = 0;
   ctx.fillStyle = 'rgba(0,0,0,.02)';
   ctx.fillRect(0, 0, w, h);
-  ctx.shadowBlur = .5;
+  ctx.shadowBlur = 0.5;
 
-  for (var i = 0; i < lines.length; ++i)
+  for (var i = 0; i < lines.length; ++i){
 
     if (lines[i].step()) { // if true it's dead
 
@@ -81,7 +81,7 @@ function anim() {
 
     ++ timeSinceLast
 
-  if (lines.length < maxLines && timeSinceLast > 10 && Math.random() < .5) {
+  if (lines.length < maxLines && timeSinceLast > 10 && Math.random() < 0.5) {
 
     timeSinceLast = 0;
 
@@ -143,7 +143,7 @@ Line.prototype.step = function () {
     if (lines.length < maxLines && Math.random() < .5) lines.push(new Line(this));
 
     // kill the poor thing
-    if (Math.random() < .2) dead = true;
+    if (Math.random() < 0.2) dead = true;
   }
 
   ctx.strokeStyle = ctx.shadowColor = getColor(this.x);
@@ -153,7 +153,9 @@ Line.prototype.step = function () {
   ctx.lineTo(prevX, prevY);
   ctx.stroke();
 
-  if (dead) return true
+  if (dead) {
+    return true
+  }
 }
 
 init();
