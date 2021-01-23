@@ -8,18 +8,20 @@ const Background = dynamic(() => import("./background"), {
 
 const Home: FC = ({text}:any) => {
   return (
-    <div className={styles.center}>
-      <h1>
-        {text}
-      </h1>
-      <a href='https://twitter.com/nomber1910' target='_blank'>
-        <FontAwesomeIcon icon={['fab','twitter']} className={styles.icon}/>
-      </a>
-      <a href='https://github.com/Akatsuki1910' target='_blank'>
-        <FontAwesomeIcon icon={['fab','github']} className={styles.icon}/>
-      </a>
+    <>
+      <div className={styles.center}>
+        <h1 className={styles.title}>
+          {text}
+        </h1>
+        <a href='https://twitter.com/nomber1910' target='_blank'>
+          <FontAwesomeIcon icon={['fab','twitter']} className={styles.icon}/>
+        </a>
+        <a href='https://github.com/Akatsuki1910' target='_blank'>
+          <FontAwesomeIcon icon={['fab','github']} className={styles.icon}/>
+        </a>
+      </div>
       <Background/>
-    </div>
+    </>
   )
 }
 
