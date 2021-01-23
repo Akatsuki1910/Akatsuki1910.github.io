@@ -1,9 +1,5 @@
-import React, {FC, useEffect, useRef} from 'react'
-import * as PIXI from 'pixi.js'
-import Option from './Option'
+import React, {FC} from 'react'
 import Bgobj from './Bgobj'
-import p5 from 'p5'
-import styles from '../../styles/Background.module.scss'
 
 const Background: FC = () => {
   return (
