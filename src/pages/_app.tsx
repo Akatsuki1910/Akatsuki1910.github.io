@@ -2,6 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import {AppProps} from 'next/app'
 
+import Router from 'next/router'
+import * as gtag from '../lib/gtag'
+Router.events.on('routeChangeComplete', url => gtag.pageview(url))
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 library.add(fab)
