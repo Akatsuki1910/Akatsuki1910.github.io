@@ -1,5 +1,8 @@
 import React, {FC} from 'react'
-import Bgobj from './Bgobj'
+import dynamic from "next/dynamic";
+const Bgobj = dynamic(() => import("./Bgobj"), {
+  ssr: false
+})
 
 const Background: FC = () => {
   return (

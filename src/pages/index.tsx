@@ -1,10 +1,7 @@
 import React, {FC} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../../styles/Home.module.scss'
-import dynamic from "next/dynamic";
-const Background = dynamic(() => import("./background"), {
-  ssr: false
-})
+import Background from './background'
 
 const Home: FC = ({text}:any) => {
   return (
