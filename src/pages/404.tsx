@@ -8,12 +8,11 @@ const Custom404: FC = () => {
     <div className={styles.bg}>
       <Head>
         <title>
-          404 error
+          error
         </title>
       </Head>
 
-      <span className={styles.glitch} data-text="aktk1910.pw">aktk1910.pw</span><br/>
-      <span className={styles.glitch} data-text="404">404</span>
+      <span className={styles.glitch} data-text="aktk1910.pw">aktk1910.pw</span>
     </div>
   )
 }
