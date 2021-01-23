@@ -3,10 +3,11 @@ import React, {
 	useEffect,
 	useRef
 } from 'react'
-import p5 from "p5"
-import styles from '../../styles/Bgobj.module.scss'
+// import p5 from 'p5'
+import styles from '../../styles/Background.module.scss'
 
 let p5Global;
+let p5;
 class BgContent {
 	pX: number;
 	pY: number;
@@ -87,12 +88,12 @@ class BgContent {
 const Bgobj: FC = () => {
 	const bgObj = [];
 	const renderRef = useRef(null)
-	const drawCanvas = (p: p5) => {
+	const drawCanvas = (p: typeof p5) => {
 		p5Global = p;
 		p.setup = () => {
 			const canvas = p.createCanvas(p.windowWidth, p.windowHeight).parent(renderRef.current);
 			canvas.position(0, 0);
-			canvas.style("z-index", "-1");
+			canvas.style('z-index', '-1');
 			p.background(0);
 			p.colorMode('rgb');
 			p.rectMode('center');
@@ -124,6 +125,7 @@ const Bgobj: FC = () => {
 
 	useEffect(() => {
 		if (!renderRef.current) return
+		p5 = require('p5/lib/p5.min')
 		new p5(drawCanvas)
 	}, [])
 	return ( 
