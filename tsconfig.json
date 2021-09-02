@@ -19,10 +19,11 @@
     "jsx": "preserve"
   },
   "include": [
-    "next-env.d.ts",
+    "additional.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/lib/gtag.ts"  ],
+    "**/*.tsx",
+    "src/lib/gtag.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
