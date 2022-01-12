@@ -1,14 +1,14 @@
 import {
-  WebGLRenderer,
+  BoxBufferGeometry,
+  BufferAttribute,
+  BufferGeometry,
+  DoubleSide,
+  Group,
+  Mesh,
+  MeshBasicMaterial,
   PerspectiveCamera,
   Scene,
-  MeshBasicMaterial,
-  Mesh,
-  Group,
-  BufferGeometry,
-  BufferAttribute,
-  DoubleSide,
-  BoxBufferGeometry,
+  WebGLRenderer,
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
@@ -24,7 +24,7 @@ export default class BG {
   constructor(can: HTMLDivElement) {
     this.width = window.innerWidth
     this.height = window.innerHeight
-    this.renderer = new WebGLRenderer()
+    this.renderer = new WebGLRenderer({ antialias: true })
     this.camera = new PerspectiveCamera(60, this.width / this.height)
     this.camera.position.set(0, 0, 3)
     this.scene = new Scene()
