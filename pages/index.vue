@@ -1,9 +1,9 @@
 <template lang="pug">
   .center
     h1.title aktk1910.pw
-    a(href="https://twitter.com/nomber1910" target="_blank")
+    a(href="https://twitter.com/nomber1910" target="_blank" aria-label="twitter")
       fa(:icon='faTwitter').icon
-    a(href="https://github.com/Akatsuki1910" target="_blank")
+    a(href="https://github.com/Akatsuki1910" target="_blank" aria-label="github")
       fa(:icon='faGithub').icon
 </template>
 
