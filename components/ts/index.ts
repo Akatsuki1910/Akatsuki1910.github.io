@@ -1,10 +1,21 @@
-import * as THREE from 'three'
+import {
+  WebGLRenderer,
+  PerspectiveCamera,
+  Scene,
+  MeshBasicMaterial,
+  Mesh,
+  Group,
+  BufferGeometry,
+  BufferAttribute,
+  DoubleSide,
+  BoxBufferGeometry,
+} from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 export default class BG {
-  renderer: THREE.WebGLRenderer
-  camera: THREE.PerspectiveCamera
-  scene: THREE.Scene
+  renderer: WebGLRenderer
+  camera: PerspectiveCamera
+  scene: Scene
   time: number
   width: number
   height: number
@@ -13,10 +24,10 @@ export default class BG {
   constructor(can: HTMLDivElement) {
     this.width = window.innerWidth
     this.height = window.innerHeight
-    this.renderer = new THREE.WebGLRenderer()
-    this.camera = new THREE.PerspectiveCamera(60, this.width / this.height)
+    this.renderer = new WebGLRenderer()
+    this.camera = new PerspectiveCamera(60, this.width / this.height)
     this.camera.position.set(0, 0, 3)
-    this.scene = new THREE.Scene()
+    this.scene = new Scene()
 
     this.setSize()
 
@@ -24,34 +35,34 @@ export default class BG {
     this.controls.enablePan = false
     this.controls.autoRotate = true
 
-    const g = new THREE.BoxGeometry(1, 1, 1)
-    const m = new THREE.MeshBasicMaterial({ color: 0xf7ddc3 })
-    const face = new THREE.Mesh(g, m)
+    const g = new BoxBufferGeometry(1, 1, 1)
+    const m = new MeshBasicMaterial({ color: 0xf7ddc3 })
+    const face = new Mesh(g, m)
     this.scene.add(face)
 
-    const hairG = new THREE.Group()
+    const hairG = new Group()
 
-    const g2 = new THREE.BoxGeometry(1.2, 0.8, 1)
-    const m2 = new THREE.MeshBasicMaterial({ color: 0xacdcfe })
-    const hair = new THREE.Mesh(g2, m2)
+    const g2 = new BoxBufferGeometry(1.2, 0.8, 1)
+    const m2 = new MeshBasicMaterial({ color: 0xacdcfe })
+    const hair = new Mesh(g2, m2)
     hair.position.y = 0.2
     hair.position.z = -0.1
     hairG.add(hair)
 
-    const g3 = new THREE.BoxGeometry(1.2, 0.4, 0.2)
-    const hair2 = new THREE.Mesh(g3, m2)
+    const g3 = new BoxBufferGeometry(1.2, 0.4, 0.2)
+    const hair2 = new Mesh(g3, m2)
     hair2.position.y = 0.4
     hair2.position.z = 0.5
     hairG.add(hair2)
 
-    const g4 = new THREE.BoxGeometry(0.1, 0.8, 0.2)
-    const hair3 = new THREE.Mesh(g4, m2)
+    const g4 = new BoxBufferGeometry(0.1, 0.8, 0.2)
+    const hair3 = new Mesh(g4, m2)
     hair3.position.x = 0.55
     hair3.position.y = -0.2
     hair3.position.z = 0.5
     hairG.add(hair3)
 
-    const hair4 = new THREE.Mesh(g4, m2)
+    const hair4 = new Mesh(g4, m2)
     hair4.position.x = -0.55
     hair4.position.y = -0.2
     hair4.position.z = 0.5
@@ -61,20 +72,20 @@ export default class BG {
 
     this.ribon()
 
-    const g5 = new THREE.BoxGeometry(0.1, 0.1, 0.1)
-    const m3 = new THREE.MeshBasicMaterial({ color: 0x000000 })
-    const eye = new THREE.Mesh(g5, m3)
+    const g5 = new BoxBufferGeometry(0.1, 0.1, 0.1)
+    const m3 = new MeshBasicMaterial({ color: 0x000000 })
+    const eye = new Mesh(g5, m3)
     eye.position.x = 0.2
     eye.position.z = 0.5
     this.scene.add(eye)
 
-    const eye2 = new THREE.Mesh(g5, m3)
+    const eye2 = new Mesh(g5, m3)
     eye2.position.x = -0.2
     eye2.position.z = 0.5
     this.scene.add(eye2)
 
-    const g6 = new THREE.BoxGeometry(0.3, 0.1, 0.1)
-    const mouth = new THREE.Mesh(g6, m3)
+    const g6 = new BoxBufferGeometry(0.3, 0.1, 0.1)
+    const mouth = new Mesh(g6, m3)
     mouth.position.y = -0.2
     mouth.position.z = 0.5
     this.scene.add(mouth)
@@ -88,8 +99,8 @@ export default class BG {
   }
 
   ribon() {
-    const rg = new THREE.Group()
-    const geometry = new THREE.BufferGeometry()
+    const rg = new Group()
+    const geometry = new BufferGeometry()
     const c = 0.3
     const a = c * 0.5
     const b = c * 0.1
@@ -111,12 +122,12 @@ export default class BG {
     ]
     const vertices = new Float32Array([...aa, ...ab, ...ac])
 
-    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
-    const material = new THREE.MeshBasicMaterial({
+    geometry.setAttribute('position', new BufferAttribute(vertices, 3))
+    const material = new MeshBasicMaterial({
       color: 0xff0000,
-      side: THREE.DoubleSide,
+      side: DoubleSide,
     })
-    const mesh = new THREE.Mesh(geometry, material)
+    const mesh = new Mesh(geometry, material)
     mesh.position.y = 0.7
     rg.add(mesh)
 

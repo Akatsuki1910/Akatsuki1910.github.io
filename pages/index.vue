@@ -1,12 +1,10 @@
 <template lang="pug">
-  div
-    .center
-      h1.title aktk1910.pw
-      a(href="https://twitter.com/nomber1910" target="_blank")
-        fa(:icon='faTwitter').icon
-      a(href="https://github.com/Akatsuki1910" target="_blank")
-        fa(:icon='faGithub').icon
-    Background
+  .center
+    h1.title aktk1910.pw
+    a(href="https://twitter.com/nomber1910" target="_blank")
+      fa(:icon='faTwitter').icon
+    a(href="https://github.com/Akatsuki1910" target="_blank")
+      fa(:icon='faGithub').icon
 </template>
 
 <script lang="ts">

@@ -1,5 +1,7 @@
 <template lang="pug">
-  Nuxt
+  div
+    Nuxt
+    Background
 </template>
 
 <style lang="scss">
