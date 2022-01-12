@@ -19,7 +19,7 @@ export default {
         content: 'width=device-width, initial-scale=1'
       }, {
         name: 'theme-color',
-        content = "#000000"
+        content: "#000000"
       },
       {
         hid: 'description',
