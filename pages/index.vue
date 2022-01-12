@@ -1,12 +1,10 @@
 <template lang="pug">
-  div
-    .center
-      h1.title aktk1910.pw
-      a(href="https://twitter.com/nomber1910" target="_blank")
-        fa(:icon='faTwitter').icon
-      a(href="https://github.com/Akatsuki1910" target="_blank")
-        fa(:icon='faGithub').icon
-    Background
+  .center
+    h1.title aktk1910.pw
+    a(href="https://twitter.com/nomber1910" target="_blank")
+      fa(:icon='faTwitter').icon
+    a(href="https://github.com/Akatsuki1910" target="_blank")
+      fa(:icon='faGithub').icon
 </template>
 
 <script lang="ts">
@@ -26,22 +24,29 @@ export default class Index extends Vue {
 }
 </script>
 
-<style lang="stylus" scoped>
-.center
-  text-align center
-  position absolute
-  top 50%
-  left 50%
-  transform translateX(-50%) translateY(-50%)
+<style lang="scss" scoped>
+.center {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  padding: 0 4px;
+}
 
-.title
-  color blue
+.title {
+  color: white;
+  font-family: sans-serif;
+}
 
-.icon
-  font-size 3rem
-  transition all 0.3s
-  margin 5px
-  color blue
-  &:hover
-    transform scale(1.2)
+.icon {
+  font-size: 3rem;
+  transition: all 0.3s;
+  margin: 5px;
+  color: white;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
 </style>

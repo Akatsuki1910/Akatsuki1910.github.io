@@ -45,6 +45,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    'nuxt-vite'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -53,6 +54,10 @@ export default {
     '@nuxtjs/pwa',
     ['nuxt-fontawesome', {
       component: 'fa',
+      imports: [{
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['faTwitter', 'faGithub']
+      }, ]
     }],
   ],
 
@@ -64,5 +69,15 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/error.vue')
+      })
+    }
+  }
 }
