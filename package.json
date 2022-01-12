@@ -1,6 +1,6 @@
 {
   "name": "akatsuki",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "analyze":"yarn build --analyze",
     "build": "nuxt build",
