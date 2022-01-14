@@ -1,4 +1,6 @@
 {
+  "name": "akatsuki",
+  "version": "2.1.0",
   "dependencies": {
     "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/robots": "^2.5.0",
