@@ -1,28 +1,11 @@
 <template lang="pug">
-  .center
-    h1.title aktk1910.pw
-    a(href="https://twitter.com/nomber1910" target="_blank")
-      fa(:icon='faTwitter').icon
-    a(href="https://github.com/Akatsuki1910" target="_blank")
-      fa(:icon='faGithub').icon
+.center
+  h1.title aktk1910.pw
+  a(href="https://twitter.com/nomber1910" target="_blank" aria-label="twitter")
+    Twitter.icon
+  a(href="https://github.com/Akatsuki1910" target="_blank" aria-label="github")
+    Github.icon
 </template>
-
-<script lang="ts">
-import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({})
-export default class Index extends Vue {
-  // computed()
-  get faTwitter() {
-    return faTwitter
-  }
-
-  get faGithub() {
-    return faGithub
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 .center {

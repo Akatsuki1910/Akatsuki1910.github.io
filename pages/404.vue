@@ -1,7 +1,7 @@
 <template lang="pug">
-    .center
-      h1.title エラーが発生しました
-      nuxt-link(to="/").link 戻る
+.center
+  h1.title エラーが発生しました
+  nuxt-link(to="/").link 戻る
 </template>
 
 <style lang="scss" scoped>

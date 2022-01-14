@@ -1,7 +1,11 @@
+<script setup lang="ts">
+import Background from "./components/Background.vue";
+</script>
+
 <template lang="pug">
-  div
-    Nuxt
-    Background
+div
+  NuxtPage
+  Background
 </template>
 
 <style lang="scss">

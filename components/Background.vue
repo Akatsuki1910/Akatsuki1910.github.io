@@ -1,20 +1,14 @@
-<template lang="pug">
-  div.bg(ref="bg")
-</template>
-
-<script lang="ts">
-import { Component, Ref, Vue } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import BG from './ts/index'
-
-@Component({})
-export default class Background extends Vue {
-  @Ref() bg!: HTMLDivElement
-
-  b: BG | null = null
-
-  mounted() {
-    this.b = new BG(this.bg)
-    this.b.start()
+const bg: { value: HTMLDivElement | null } = ref(null)
+onMounted(() => {
+  if (bg.value) {
+    const b = new BG(bg.value)
+    b.start()
   }
-}
+})
 </script>
+
+<template lang="pug">
+div(ref="bg")
+</template>
