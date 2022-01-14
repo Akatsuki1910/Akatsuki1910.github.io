@@ -10,9 +10,9 @@
     "@types/three": "^0.136.1",
     "nuxt3": "latest",
     "prettier": "^2.5.1",
+    "pug": "^3.0.2",
     "sass": "^1.48.0",
-    "three": "^0.136.0",
-    "vite-plugin-pug": "^0.3.0"
+    "three": "^0.136.0"
   },
   "private": true,
   "scripts": {
