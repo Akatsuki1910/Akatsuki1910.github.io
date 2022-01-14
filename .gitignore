@@ -1,4 +1,7 @@
-.nuxt
 node_modules
-dist
-target/
+*.log
+.nuxt
+nuxt.d.ts
+.output
+.env
+.vercel_build_output
