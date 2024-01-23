@@ -1,26 +1,25 @@
 {
-  "name": "akatsuki",
-  "version": "2.1.0",
-  "dependencies": {
-    "@nuxtjs/google-gtag": "^1.0.4",
-    "@nuxtjs/robots": "^2.5.0",
-    "@nuxtjs/sitemap": "^2.4.0"
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare",
+    "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@types/three": "^0.136.1",
-    "nuxt3": "latest",
-    "prettier": "^2.5.1",
+    "@nuxtjs/google-gtag": "^1.0.4",
+    "@nuxtjs/robots": "^3.0.0",
+    "@nuxtjs/sitemap": "^5.0.5",
+    "@types/three": "^0.160.0",
+    "nuxt": "^3.9.3",
+    "prettier": "^3.2.4",
     "pug": "^3.0.2",
-    "sass": "^1.48.0",
-    "three": "^0.136.0"
-  },
-  "private": true,
-  "scripts": {
-    "analyze": "yarn build --analyze",
-    "build": "nuxi build",
-    "dev": "nuxi dev",
-    "generate": "nuxi generate",
-    "preview": "nuxi preview",
-    "start": "node .output/server/index.mjs"
+    "sass": "^1.70.0",
+    "three": "^0.160.1",
+    "vue": "^3.4.14",
+    "vue-router": "^4.2.5"
   }
 }
