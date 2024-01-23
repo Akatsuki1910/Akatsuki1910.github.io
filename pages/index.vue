@@ -1,6 +1,6 @@
 <template lang="pug">
 .center
-  h1.title aktk1910.pw
+  h1.title aktk1910.com
   a(href="https://twitter.com/nomber1910" target="_blank" aria-label="twitter")
     Twitter.icon
   a(href="https://github.com/Akatsuki1910" target="_blank" aria-label="github")
