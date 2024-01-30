@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "aktk1910.pw",
+      title: "aktk1910.com",
       htmlAttrs: {
         lang: "ja",
       },
