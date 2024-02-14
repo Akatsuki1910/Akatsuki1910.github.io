@@ -1,13 +1,64 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+
+const LINKS = [
+  { url: 'https://twitter.com/teruru33550336', id: 'teruru33550336' },
+  { url: 'https://qiita.com/Akatsuki1910', id: 'Akatsuki1910' },
+  {
+    url: 'https://vrchat.com/home/user/usr_44b7238d-3c43-4276-b084-06a0b04ba9bb',
+    id: 'akatsuki1910',
+  },
+  { url: 'https://www.youtube.com/@akatsuki1910', id: 'akatsuki1910' },
+  { url: 'https://github.com/Akatsuki1910', id: 'Akatsuki1910' },
+  { url: 'https://www.instagram.com/1910akatsuki', id: '1910akatsuki' },
+  { url: 'https://www.nicovideo.jp/user/65165655', id: '暁の流星' },
+  { url: 'https://akatsuki1910.hatenablog.com', id: 'akatsuki1910' },
+  { url: 'https://suzuri.jp/akatsuki1910', id: 'akatsuki1910' },
+  { url: 'https://atcoder.jp/users/Akatsuki1910', id: 'Akatsuki1910' },
+  { url: 'https://neort.io/@kxRaHBGSlVbGNFln0YnNYdFUNIC3', id: '暁の流星' },
+  { url: 'https://openprocessing.org/user/304034', id: 'akatsuki1910' },
+] as const satisfies ReadonlyArray<{ url: string; id: string }>;
 ---
 
 <Layout title="akatsuki1910 - links">
-  <main>a</main>
+  <main>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>SNS</th>
+          <th>LINK</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          LINKS.map((v) => (
+            <tr>
+              <td class="td">
+                <Image
+                  src={`http://www.google.com/s2/favicons?domain=${new URL(v.url).origin}`}
+                  alt=""
+                  width={16}
+                  height={16}
+                />
+              </td>
+              <td class="td">
+                <a href={v.url}>{v.id}</a>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </main>
 </Layout>
 
 <style lang="scss">
-  main {
-    color: red;
+  .table {
+    margin: 0 auto;
+  }
+
+  .td {
+    text-align: center;
   }
 </style>
