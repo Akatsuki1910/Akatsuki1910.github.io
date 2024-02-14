@@ -9,6 +9,32 @@ import iconImage from '../images/akatsuki1910.webp';
     <h1 class="icon-wrapper">
       <Image src={iconImage} alt={'akatsuki1910'} class="icon" />
     </h1>
+    <section class="profile">
+      <h2><span class="material-symbols-outlined">check</span></h2>
+      <ul class="profile-ul">
+        <li class="profile-list">
+          <span class="material-symbols-outlined">face</span>
+          <p>
+            <ruby>中村<rp>(</rp><rt>ナカムラ</rt><rp>)</rp></ruby>
+            <ruby>育豊<rp>(</rp><rt>イクト</rt><rp>)</rp></ruby>
+          </p>
+        </li>
+        <li class="profile-list">
+          <span class="material-symbols-outlined">person_search</span>
+          <time>
+            {
+              new Date(
+                Date.now() - new Date(2001, 8, 16).getTime(),
+              ).getFullYear() - new Date(0).getFullYear()
+            }y/o
+          </time>
+        </li>
+        <li class="profile-list">
+          <span class="material-symbols-outlined">mail</span>
+          <a href="mailto:akatsukicirno@gmail.com">akatsukicirno@gmail.com</a>
+        </li>
+      </ul>
+    </section>
   </main>
 </Layout>
 
@@ -20,12 +46,38 @@ import iconImage from '../images/akatsuki1910.webp';
   }
 
   .icon-wrapper {
-    width: 440px;
+    max-width: 440px;
+    margin: 10px;
     border: 1px solid black;
   }
 
   .icon {
     width: 100%;
     height: auto;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &-ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      & > span {
+        margin-right: 10px;
+      }
+
+      & > * {
+        margin: 2px 0;
+      }
+    }
   }
 </style>
