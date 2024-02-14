@@ -18,6 +18,7 @@ const LINKS = [
   { url: 'https://atcoder.jp/users/Akatsuki1910', id: 'Akatsuki1910' },
   { url: 'https://neort.io/@kxRaHBGSlVbGNFln0YnNYdFUNIC3', id: '暁の流星' },
   { url: 'https://openprocessing.org/user/304034', id: 'akatsuki1910' },
+  { url: 'https://speakerdeck.com/akatsuki1910', id: 'akatsuki1910' },
 ] as const satisfies ReadonlyArray<{ url: string; id: string }>;
 ---
 
@@ -43,7 +44,9 @@ const LINKS = [
                 />
               </td>
               <td class="td">
-                <a href={v.url}>{v.id}</a>
+                <a href={v.url} target="_blank" rel="noopener noreferrer">
+                  {v.id}
+                </a>
               </td>
             </tr>
           ))
