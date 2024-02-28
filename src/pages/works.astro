@@ -1,13 +1,74 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const WOKS = [
+  {
+    day: '2021-09-01',
+    title:
+      '奈良ソーシャルクリエイションキャラバン2021にておてらおやつクラブ賞受賞',
+    description:
+      'マイナンバーを用いた支援の最適化システム「マイナサポートナビ」を提案しました',
+    url: 'https://www.nara-k.ac.jp/contribution/2021/10/2021.html',
+  },
+  {
+    day: '2022-12-19',
+    title: 'CURATION FREEに作品を出してみた',
+    description: "KAYAC engineers' blog 執筆",
+    url: 'https://techblog.kayac.com/my-work-to-curation-free',
+  },
+  {
+    day: '2022-12-25',
+    title: 'つくる人を増やす - 自論',
+    description: "KAYAC engineers' blog 執筆",
+    url: 'https://techblog.kayac.com/Increase-the-number-of-tsukuruhito_',
+  },
+  {
+    day: '2023-08-16',
+    title: 'N通りのCSSの書き方',
+    description: "KAYAC engineers' blog 執筆",
+    url: 'https://techblog.kayac.com/different-ways-css',
+  },
+  {
+    day: '2023-09-03',
+    title: 'SPAJAM2023第三回予選 最優秀賞',
+    description: '「御朱印GO」というアプリで最優秀賞をいただきました',
+    url: 'https://www.spajam.jp/result/?id=3',
+  },
+  {
+    day: '2023-11-19',
+    title: 'SPAJAM2023本選 ファイナリスト賞',
+    description: '「シゴレター」というアプリで最優秀賞をいただきました',
+    url: 'https://www.spajam.jp/result/?id=7',
+  },
+] as const satisfies ReadonlyArray<{
+  day: `${number}-${number}-${number}`;
+  title: string;
+  description: string;
+  url: string;
+}>;
 ---
 
 <Layout title="akatsuki1910 - works">
-  <main>a</main>
+  <main>
+    {
+      WOKS.map((v) => (
+        <section class="section">
+          <h2>{v.title}</h2>
+          <time datetime={v.day}>{v.day}</time>
+          <p>{v.description}</p>
+          <a href={v.url} target="_blank" rel="noopener noreferrer">
+            {v.url}
+          </a>
+        </section>
+      ))
+    }
+  </main>
 </Layout>
 
 <style lang="scss">
-  main {
-    color: red;
+  .section {
+    &:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
   }
 </style>
