@@ -1,0 +1,37 @@
+---
+import Favicons from '../components/Favicons.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <Favicons />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <style lang="scss">
+      html,
+      body {
+        margin: 0;
+      }
+    </style>
+  </body>
+</html>

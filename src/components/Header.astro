@@ -1,0 +1,33 @@
+<header class="header">
+  <a href="/" class="material-symbols-outlined">home</a>
+  <a href="/works" class="material-symbols-outlined">work</a>
+  <a href="/links" class="material-symbols-outlined">person</a>
+</header>
+
+<style lang="scss">
+  .header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: lightgray;
+
+    & > a {
+      text-decoration: none;
+      width: 100%;
+      padding: 5px 0;
+      text-align: center;
+      color: black;
+
+      &:not(:first-child) {
+        border-left: 1px solid black;
+      }
+
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        color: black;
+      }
+    }
+  }
+</style>
