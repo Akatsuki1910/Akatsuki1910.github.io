@@ -20,6 +20,7 @@ const LINKS = [
   { url: 'https://openprocessing.org/user/304034', id: 'akatsuki1910' },
   { url: 'https://speakerdeck.com/akatsuki1910', id: 'akatsuki1910' },
   { url: 'https://www.wantedly.com/id/nakamura_ikuto', id: 'nakamura_ikuto' },
+  { url: 'https://www.linkedin.com/in/nakamura-ikuto/', id: 'Ikuto Nakamura' },
 ] as const satisfies ReadonlyArray<{ url: string; id: string }>;
 ---
 
@@ -39,7 +40,7 @@ const LINKS = [
               <td class="td">
                 <Image
                   src={`http://www.google.com/s2/favicons?domain=${new URL(v.url).origin}`}
-                  alt=""
+                  alt={new URL(v.url).hostname}
                   width={16}
                   height={16}
                 />
