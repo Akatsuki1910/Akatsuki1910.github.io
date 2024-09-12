@@ -29,9 +29,10 @@ import iconImage from '../images/akatsuki1910.webp';
             <span class="material-symbols-outlined">person_search</span>
             <p>
               {
-                new Date(
-                  Date.now() - new Date(2001, 8, 16).getTime(),
-                ).getFullYear() - new Date(0).getFullYear()
+                Math.floor(
+                  (Date.now() - new Date(2001, 8, 16).getTime()) /
+                    (365 * 24 * 60 * 60 * 1000),
+                )
               }y/o
             </p>
           </li>
