@@ -4,16 +4,18 @@ import Layout from '../layouts/Layout.astro';
 import iconImage from '../images/akatsuki1910.webp';
 ---
 
-<Layout title="akatsuki1910">
+<Layout title="home">
   <main class="main">
-    <h1 class="icon-wrapper">
-      <Image
-        src={iconImage}
-        alt={'akatsuki1910'}
-        class="icon"
-        loading={'lazy'}
-      />
-    </h1>
+    <h2 class="icon-wrapper">
+      <figure>
+        <Image
+          src={iconImage}
+          alt={'akatsuki1910'}
+          class="icon"
+          loading={'lazy'}
+        />
+      </figure>
+    </h2>
     <section class="profile">
       <h2><span class="material-symbols-outlined">check</span></h2>
       <address>
@@ -49,14 +51,12 @@ import iconImage from '../images/akatsuki1910.webp';
 <style lang="scss">
   .main {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
   }
 
   .icon-wrapper {
     max-width: 440px;
-    margin: 10px;
-    border: 1px solid black;
   }
 
   .icon {
@@ -66,12 +66,12 @@ import iconImage from '../images/akatsuki1910.webp';
 
   .profile {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
 
     &-ul {
-      margin: 0;
       padding: 0;
+      margin: 0;
     }
 
     &-list {

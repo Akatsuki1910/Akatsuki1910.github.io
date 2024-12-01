@@ -1,0 +1,43 @@
+@mixin eye-over($property, $isReverse: false) {
+  &::before,
+  &::after {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    pointer-events: none;
+    content: '';
+    background-color: black;
+    transition-duration: 0.2s;
+    transition-property: top, bottom;
+  }
+
+  &::before {
+    top: if($isReverse, -50%, 0);
+  }
+
+  &::after {
+    bottom: if($isReverse, -50%, 0);
+  }
+
+  &[#{$property}='true'] {
+    &::before {
+      top: if($isReverse, 0, -50%);
+    }
+
+    &::after {
+      bottom: if($isReverse, 0, -50%);
+    }
+  }
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  transition-property: color;
+
+  &:hover {
+    color: #d9f70e;
+  }
+}

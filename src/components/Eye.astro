@@ -1,0 +1,57 @@
+---
+type Props = ({ w: number; h?: undefined } | { w?: undefined; h: number }) & {
+  id: string;
+};
+
+const { w, h, id } = Astro.props;
+
+const W = 400;
+const H = 150;
+
+const ratio = w ? w / W : h ? h / H : 1;
+const fixW = ratio * W;
+
+const x = 0;
+const y = (H / 2) * ratio;
+const r = fixW / 10;
+const upx = fixW / 2;
+const upy = upx / 2;
+
+const cx = fixW / 2;
+const cy = y;
+
+const circleId = `${id}-circle`;
+const width = fixW;
+const height = y * 2;
+---
+
+<script lang="ts" define:vars={{ width, height, id, cx, cy, circleId }}>
+  const normalizeMove = (n) => Math.log(Math.abs(n) + 1) * (n < 0 ? -1 : 1) * 2;
+
+  window.addEventListener('mousemove', (e) => {
+    e.preventDefault();
+
+    const d = document.getElementById(id);
+    const c = document.getElementById(circleId);
+
+    const dx = d.getBoundingClientRect().left;
+    const dy = d.getBoundingClientRect().top;
+
+    const fixMx = normalizeMove(e.clientX - (dx + width / 2));
+    const fixMy = normalizeMove(e.clientY - (dy + height / 2));
+
+    c.setAttribute('cx', cx + fixMx);
+    c.setAttribute('cy', cy + fixMy);
+  });
+</script>
+
+<svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} id={id}>
+  <path
+    d={`
+    M${x} ${y}C${x + upx} ${y + upy} ${x + fixW - upx} ${y + upy} ${x + fixW} ${y}
+    M${x} ${y}C${x + upx} ${y - upy} ${x + fixW - upx} ${y - upy} ${x + fixW} ${y}`}
+    fill="white"
+  >
+  </path>
+  <circle id={circleId} cx={fixW / 2} cy={y} r={r} fill="black"></circle>
+</svg>

@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  url: string;
+  size?: number;
+}
+
+const { url, size = 24 } = Astro.props;
+
+const urlObject = new URL(url);
+---
+
+<span class="image">
+  <Image
+    src={`http://www.google.com/s2/favicons?sz=${48}&domain=${urlObject.origin}`}
+    alt={urlObject.hostname}
+    width={size}
+    height={size}
+  />
+</span>
+
+<style lang="scss" define:vars={{ size }}>
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(#{var(--size)} * sqrt(2) * 1px + 4px);
+    height: calc(#{var(--size)} * sqrt(2) * 1px + 4px);
+    background-color: white;
+    border-radius: 50%;
+    transition-duration: 0.2s;
+    transition-property: background-color;
+
+    &:hover {
+      background-color: #d9f70e;
+    }
+  }
+</style>

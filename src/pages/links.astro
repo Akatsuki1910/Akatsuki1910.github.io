@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import FaviconImage from '../components/FaviconImage.astro';
 
 const LINKS = [
   { url: 'https://twitter.com/teruru33550336', id: 'teruru33550336' },
@@ -24,51 +24,52 @@ const LINKS = [
 ] as const satisfies ReadonlyArray<{ url: string; id: string }>;
 ---
 
-<Layout title="akatsuki1910 - links">
-  <main>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>SNS</th>
-          <th>LINK</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          LINKS.map((v) => (
-            <tr>
-              <td class="td">
-                <Image
-                  src={`http://www.google.com/s2/favicons?domain=${new URL(v.url).origin}`}
-                  alt={new URL(v.url).hostname}
-                  width={16}
-                  height={16}
-                />
-              </td>
-              <td class="td">
-                <a
-                  href={v.url}
-                  translate="no"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {v.id}
-                </a>
-              </td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+<Layout title="links">
+  <main class="main">
+    <ul class="ul">
+      {
+        LINKS.map((v) => (
+          <li class="li">
+            <a
+              class="a"
+              href={v.url}
+              translate="no"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaviconImage url={v.url} />
+              {v.id}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </main>
 </Layout>
 
 <style lang="scss">
-  .table {
-    margin: 0 auto;
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
-  .td {
-    text-align: center;
+  .ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .li {
+    list-style: none;
+  }
+
+  .a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
   }
 </style>

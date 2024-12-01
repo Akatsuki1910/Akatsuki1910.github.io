@@ -1,4 +1,5 @@
 ---
+import FaviconImage from '../components/FaviconImage.astro';
 import Layout from '../layouts/Layout.astro';
 
 const WOKS = [
@@ -8,82 +9,106 @@ const WOKS = [
       '奈良ソーシャルクリエイションキャラバン2021にておてらおやつクラブ賞受賞',
     description:
       'マイナンバーを用いた支援の最適化システム「マイナサポートナビ」を提案しました',
-    url: 'https://www.nara-k.ac.jp/contribution/2021/10/2021.html',
+    urls: ['https://www.nara-k.ac.jp/contribution/2021/10/2021.html'],
   },
   {
     day: '2022-12-19',
     title: 'CURATION FREEに作品を出してみた',
     description: "KAYAC engineers' blog 執筆",
-    url: 'https://techblog.kayac.com/my-work-to-curation-free',
+    urls: ['https://techblog.kayac.com/my-work-to-curation-free'],
   },
   {
     day: '2022-12-25',
     title: 'つくる人を増やす - 自論',
     description: "KAYAC engineers' blog 執筆",
-    url: 'https://techblog.kayac.com/Increase-the-number-of-tsukuruhito_',
+    urls: ['https://techblog.kayac.com/Increase-the-number-of-tsukuruhito_'],
   },
   {
     day: '2023-08-16',
     title: 'N通りのCSSの書き方',
     description: "KAYAC engineers' blog 執筆",
-    url: 'https://techblog.kayac.com/different-ways-css',
+    urls: ['https://techblog.kayac.com/different-ways-css'],
   },
   {
     day: '2023-09-03',
     title: 'SPAJAM2023第三回予選 最優秀賞',
     description: '「御朱印GO」というアプリで最優秀賞をいただきました',
-    url: 'https://history.spajam.jp/result/?id=3',
+    urls: [
+      'https://history.spajam.jp/result/?id=3',
+      'https://x.com/spajam/status/1698549007260557576',
+      'https://www.mcf.or.jp/newsletter/20230904-33542',
+      'https://gamebiz.jp/news/374249',
+    ],
   },
   {
     day: '2023-11-19',
     title: 'SPAJAM2023本選 ファイナリスト賞',
     description: '「シゴレター」というアプリでファイナリスト賞をいただきました',
-    url: 'https://www.spajam.jp/result/?id=7',
+    urls: ['https://history.spajam.jp/result/?id=7'],
   },
   {
     day: '2024-02-11',
     title: 'QiitaHackathon予選 予選通過',
     description: '「ときめQiita」というアプリで予選通過しました',
-    url: 'https://twitter.com/chomado/status/1756562706805723292',
+    urls: [
+      'https://qiita.com/official-campaigns/hackathon/2024-first',
+      'https://twitter.com/chomado/status/1756562706805723292',
+    ],
   },
   {
     day: '2024-03-03',
     title: 'QiitaHackathon本選 NECソリューションイノベータ賞',
     description:
       '「SCOOP!」というアプリでNECソリューションイノベータ賞をいただきました',
-    url: 'https://twitter.com/nec_necsi/status/1765655310646260143',
+    urls: [
+      'https://qiita.com/official-campaigns/hackathon/2024-first',
+      'https://twitter.com/nec_necsi/status/1765655310646260143',
+    ],
   },
   {
     day: '2024-10-15',
     title: 'SPAJAM2024第六回予選 優秀賞',
     description: '「いっちょあがり！」というアプリで優秀賞をいただきました',
-    url: 'https://www.spajam.jp/result/?id=6',
+    urls: ['https://www.spajam.jp/result/?id=6'],
   },
   {
     day: '2024-11-17',
     title: 'SPAJAM2024本選 最優秀賞',
     description: '「ATTENTION  POLICE」というアプリで最優秀賞をいただきました',
-    url: 'https://x.com/spajam/status/1858359887174226163',
+    urls: [
+      'https://www.spajam.jp/result/?id=7',
+      'https://x.com/spajam/status/1858359887174226163',
+      'https://www.mcf.or.jp/newsletter/20241118-37195',
+      'https://gamebiz.jp/news/374249',
+    ],
   },
 ] as const satisfies ReadonlyArray<{
   day: `${number}-${number}-${number}`;
   title: string;
   description: string;
-  url: string;
+  urls: string[];
 }>;
 ---
 
-<Layout title="akatsuki1910 - works">
-  <main>
+<Layout title="works">
+  <main class="main">
     {
-      WOKS.map((v) => (
+      WOKS.toSorted(
+        (a, b) => new Date(a.day).getTime() - new Date(b.day).getTime(),
+      ).map((v) => (
         <section class="section">
           <h2>{v.title}</h2>
           <time datetime={v.day}>{v.day}</time>
           <p>{v.description}</p>
-          <a href={v.url} target="_blank" rel="noopener noreferrer">
-            {v.url}
-          </a>
+          <ul class="ul">
+            {v.urls.sort().map((url) => (
+              <li class="li">
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  <FaviconImage url={url} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
       ))
     }
@@ -91,9 +116,26 @@ const WOKS = [
 </Layout>
 
 <style lang="scss">
+  .main {
+    display: grid;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
   .section {
-    &:not(:last-child) {
-      border-bottom: 1px solid black;
-    }
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: 8px;
+  }
+
+  .ul {
+    display: flex;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .li {
+    list-style: none;
   }
 </style>
