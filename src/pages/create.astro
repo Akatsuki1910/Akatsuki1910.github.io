@@ -1,0 +1,91 @@
+---
+import FaviconImage from '../components/FaviconImage.astro';
+import Layout from '../layouts/Layout.astro';
+
+const WOKS = [
+  {
+    title: 'つぶやきprocessing',
+    description: '「#つぶやきprocessing」を投稿していました',
+    urls: [
+      'https://x.com/search?q=(%23%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8Dprocessing)%20(from%3Ateruru33550336)&src=typed_query',
+    ],
+  },
+  {
+    title: 'freaks',
+    description: '電子レンジをバンバンするアレを再現しました',
+    urls: [
+      'https://x.com/kayac_inc/status/1626064241051701250',
+      'https://github.com/Akatsuki1910/freaks',
+    ],
+  },
+  {
+    title: 'maze3d',
+    description: 'Windows95のスクリーンセーバーを作っちゃいました',
+    urls: [
+      'https://x.com/kayac_inc/status/1598648734820212736',
+      'https://github.com/Akatsuki1910/maze3d',
+    ],
+  },
+  {
+    title: 'saizeriya rss',
+    description: 'サイゼリヤのrssです',
+    urls: ['https://saizeriya.net'],
+  },
+  {
+    title: '終わらん',
+    description: '「○○.終わ.らん」というネタドメインです',
+    urls: ['https://owa.run/'],
+  },
+] as const satisfies ReadonlyArray<{
+  title: string;
+  description: string;
+  urls: string[];
+}>;
+---
+
+<Layout title="create">
+  <main class="main">
+    {
+      WOKS.map((v) => (
+        <section class="section">
+          <h2>{v.title}</h2>
+          <p>{v.description}</p>
+          <ul class="ul">
+            {v.urls.sort().map((url) => (
+              <li class="li">
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  <FaviconImage url={url} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </main>
+</Layout>
+
+<style lang="scss">
+  .main {
+    display: grid;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .section {
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: 8px;
+  }
+
+  .ul {
+    display: flex;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .li {
+    list-style: none;
+  }
+</style>
