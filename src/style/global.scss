@@ -4,7 +4,7 @@
     position: fixed;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 51%;
     pointer-events: none;
     content: '';
     background-color: black;
@@ -13,20 +13,20 @@
   }
 
   &::before {
-    top: if($isReverse, -50%, 0);
+    top: if($isReverse, -51%, 0);
   }
 
   &::after {
-    bottom: if($isReverse, -50%, 0);
+    bottom: if($isReverse, -51%, 0);
   }
 
   &[#{$property}='true'] {
     &::before {
-      top: if($isReverse, 0, -50%);
+      top: if($isReverse, 0, -51%);
     }
 
     &::after {
-      bottom: if($isReverse, 0, -50%);
+      bottom: if($isReverse, 0, -51%);
     }
   }
 }
