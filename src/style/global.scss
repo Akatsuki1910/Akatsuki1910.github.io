@@ -4,29 +4,29 @@
     position: fixed;
     left: 0;
     width: 100%;
-    height: 51%;
+    height: 100%;
     pointer-events: none;
     content: '';
     background-color: black;
-    transition-duration: 0.2s;
+    transition-duration: 0.4s;
     transition-property: top, bottom;
   }
 
   &::before {
-    top: if($isReverse, -51%, 0);
+    top: if($isReverse, -100%, 0);
   }
 
   &::after {
-    bottom: if($isReverse, -51%, 0);
+    bottom: if($isReverse, -100%, 0);
   }
 
   &[#{$property}='true'] {
     &::before {
-      top: if($isReverse, 0, -51%);
+      top: if($isReverse, 0, -100%);
     }
 
     &::after {
-      bottom: if($isReverse, 0, -51%);
+      bottom: if($isReverse, 0, -100%);
     }
   }
 }

@@ -8,6 +8,7 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'legacy',
           additionalData: '@use "src/style/global.scss" as *;',
         },
       },
@@ -15,7 +16,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    host: '127.0.0.1',
+    host: '0.0.0.0',
   },
   integrations: [
     partytown({
