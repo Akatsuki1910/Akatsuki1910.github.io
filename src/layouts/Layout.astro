@@ -1,6 +1,7 @@
 ---
 import Favicons from '../components/Favicons.astro';
 import Header from '../components/Header.astro';
+import Loading from '../components/Loading.astro';
 import type { LINKS } from '../ts/pageLinks';
 
 interface Props {
@@ -44,12 +45,14 @@ const { title } = Astro.props;
   <body>
     <Header title={title} />
     <slot />
+    <Loading />
   </body>
 </html>
 
 <style lang="scss">
   html,
   body {
+    position: relative;
     min-height: 100vh;
     margin: 0;
     font-family: 'Noto Sans JP', sans-serif;
@@ -65,7 +68,6 @@ const { title } = Astro.props;
     &::before,
     &::after {
       z-index: 1000;
-      background-color: black;
     }
   }
 </style>

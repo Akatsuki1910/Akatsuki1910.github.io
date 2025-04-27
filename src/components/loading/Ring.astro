@@ -1,0 +1,79 @@
+---
+interface Props {
+  l: number;
+  i: number;
+  v: string;
+  num: number;
+}
+
+const { l, i, v, num } = Astro.props;
+
+const animationDuration = `${3 + l * 1 + i * 1}s`;
+---
+
+<div
+  class="loading-ring"
+  data-type={v}
+  style={{
+    width: `${5 + l * 5 + i * 5}vmin`,
+    height: `${5 + l * 5 + i * 5}vmin`,
+    transform: `translate(-50%, -50%) rotate(${(i * 360) / num}deg)`,
+  }}
+>
+</div>
+
+<style lang="scss" define:vars={{ animationDuration }}>
+  @keyframes loading-x {
+    from {
+      transform: translate(-50%, -50%) rotateX(0deg);
+    }
+
+    to {
+      transform: translate(-50%, -50%) rotateX(360deg);
+    }
+  }
+
+  @keyframes loading-y {
+    from {
+      transform: translate(-50%, -50%) rotateY(0deg);
+    }
+
+    to {
+      transform: translate(-50%, -50%) rotateY(360deg);
+    }
+  }
+
+  .loading-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      content: '';
+      border: 1vmin solid white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      /* stylelint-disable-next-line custom-property-pattern */
+      animation-duration: var(--animationDuration);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    &[data-type='x'] {
+      &::before {
+        animation-name: loading-x;
+      }
+    }
+
+    &[data-type='y'] {
+      &::before {
+        animation-name: loading-y;
+      }
+    }
+  }
+</style>
