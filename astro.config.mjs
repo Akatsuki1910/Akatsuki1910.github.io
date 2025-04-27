@@ -8,6 +8,9 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
+        },
+        scss: {
           api: 'legacy',
           additionalData: '@use "src/style/global.scss" as *;',
         },
