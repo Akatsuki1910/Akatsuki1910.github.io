@@ -1,13 +1,11 @@
 ---
+import ErrorContent from '../components/ErrorContent.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main>
-    <h1>404 Not Found</h1>
-    <p>お探しのページは見つかりませんでした。</p>
-    <p>
-      <a href="/">ホームに戻る</a>
-    </p>
-  </main>
+  <ErrorContent
+    title="404 Not Found"
+    description="お探しのページは見つかりませんでした。"
+  />
 </Layout>

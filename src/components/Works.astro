@@ -97,7 +97,7 @@ const WOKS = [
 <SectionWrapper id="works">
   <ContentsList
     data={WOKS.toSorted(
-      (a, b) => new Date(a.day).getTime() - new Date(b.day).getTime(),
+      (a, b) => new Date(b.day).getTime() - new Date(a.day).getTime(),
     )}
   />
 </SectionWrapper>

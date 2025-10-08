@@ -1,0 +1,17 @@
+---
+import ErrorContent from '../components/ErrorContent.astro';
+import Layout from '../layouts/Layout.astro';
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+---
+
+<Layout>
+  <ErrorContent
+    title="500 Internal Server Error"
+    description={error instanceof Error ? error.message : 'Unknown error'}
+  />
+</Layout>
