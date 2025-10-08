@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import iconImage from '../images/akatsuki1910.webp';
+import SectionWrapper from './SectionWrapper.astro';
+---
+
+<SectionWrapper id="home" isFilled>
+  <div class="main">
+    <h1 class="icon-wrapper">
+      <figure>
+        <Image
+          src={iconImage}
+          alt={'akatsuki1910'}
+          class="icon"
+          loading={'lazy'}
+        />
+      </figure>
+    </h1>
+    <div class="profile">
+      <h2><span class="material-symbols-outlined">check</span></h2>
+      <address>
+        <ul class="profile-ul">
+          <li class="profile-list">
+            <span class="material-symbols-outlined">face</span>
+            <p>
+              <ruby>中村<rp>(</rp><rt>ナカムラ</rt><rp>)</rp></ruby>
+              <ruby>育豊<rp>(</rp><rt>イクト</rt><rp>)</rp></ruby>
+            </p>
+          </li>
+          <li class="profile-list">
+            <span class="material-symbols-outlined">cake</span>
+            <time datetime="2001-08-16">2001/08/16</time>
+          </li>
+          <li class="profile-list">
+            <span class="material-symbols-outlined">person_search</span>
+            <p>
+              {
+                Math.floor(
+                  (Date.now() - new Date(2001, 8 - 1, 16).getTime()) /
+                    (365 * 24 * 60 * 60 * 1000),
+                )
+              }y/o
+            </p>
+          </li>
+          <li class="profile-list">
+            <span class="material-symbols-outlined">mail</span>
+            <a href="mailto:akatsukicirno@gmail.com">akatsukicirno@gmail.com</a>
+          </li>
+        </ul>
+      </address>
+    </div>
+  </div>
+</SectionWrapper>
+
+<style lang="scss">
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .icon-wrapper {
+    max-width: 440px;
+
+    @include is-sp {
+      width: 70vw;
+    }
+
+    figure {
+      margin: 0;
+    }
+  }
+
+  .icon {
+    width: 100%;
+    height: auto;
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      & > span {
+        margin-right: 10px;
+      }
+
+      & > * {
+        margin: 2px 0;
+      }
+    }
+  }
+</style>

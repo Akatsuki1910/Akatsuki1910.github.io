@@ -16,6 +16,10 @@ window.addEventListener('load', () => {
       if (!href) return;
 
       if (href === '#') return;
+      if (href.startsWith('#')) {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
       if (!href.includes('mailto:')) {
         hide();
         await timeAwait(200);

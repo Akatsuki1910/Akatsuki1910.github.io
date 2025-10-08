@@ -1,3 +1,5 @@
+$header-height: 80px;
+
 @mixin eye-over($property, $isReverse: false) {
   &::before,
   &::after {
@@ -28,6 +30,12 @@
     &::after {
       bottom: if($isReverse, 0, -100%);
     }
+  }
+}
+
+@mixin is-sp {
+  @media (width <= 768px) {
+    @content;
   }
 }
 

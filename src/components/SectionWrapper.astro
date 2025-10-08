@@ -1,0 +1,39 @@
+---
+import { LINKS } from '../ts/pageLinks';
+
+interface Props {
+  id: keyof typeof LINKS;
+  isFilled?: boolean;
+}
+
+const { id, isFilled } = Astro.props;
+const title = LINKS[id].title;
+---
+
+<section class="main" id={id} data-is-filled={isFilled}>
+  {
+    () => {
+      if (title !== 'HOME') {
+        return <h2 class="title">{title}</h2>;
+      }
+    }
+  }
+  <slot />
+</section>
+
+<style lang="scss">
+  .main {
+    box-sizing: border-box;
+    padding-top: $header-height;
+
+    &[data-is-filled='true'] {
+      min-height: 100lvh;
+    }
+  }
+
+  .title {
+    margin: 16px;
+    font-size: 2em;
+    text-align: center;
+  }
+</style>

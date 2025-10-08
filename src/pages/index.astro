@@ -1,91 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-import iconImage from '../images/akatsuki1910.webp';
+import Create from '../components/Create.astro';
+import Home from '../components/Home.astro';
+import Links from '../components/Links.astro';
+import Works from '../components/Works.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<Layout title="home">
-  <main class="main">
-    <h2 class="icon-wrapper">
-      <figure>
-        <Image
-          src={iconImage}
-          alt={'akatsuki1910'}
-          class="icon"
-          loading={'lazy'}
-        />
-      </figure>
-    </h2>
-    <section class="profile">
-      <h2><span class="material-symbols-outlined">check</span></h2>
-      <address>
-        <ul class="profile-ul">
-          <li class="profile-list">
-            <span class="material-symbols-outlined">face</span>
-            <p>
-              <ruby>中村<rp>(</rp><rt>ナカムラ</rt><rp>)</rp></ruby>
-              <ruby>育豊<rp>(</rp><rt>イクト</rt><rp>)</rp></ruby>
-            </p>
-          </li>
-          <li class="profile-list">
-            <span class="material-symbols-outlined">person_search</span>
-            <p>
-              {
-                Math.floor(
-                  (Date.now() - new Date(2001, 8, 16).getTime()) /
-                    (365 * 24 * 60 * 60 * 1000),
-                )
-              }y/o
-            </p>
-          </li>
-          <li class="profile-list">
-            <span class="material-symbols-outlined">mail</span>
-            <a href="mailto:akatsukicirno@gmail.com">akatsukicirno@gmail.com</a>
-          </li>
-        </ul>
-      </address>
-    </section>
-  </main>
-</Layout>
-
-<style lang="scss">
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .icon-wrapper {
-    max-width: 440px;
-  }
-
-  .icon {
-    width: 100%;
-    height: auto;
-  }
-
-  .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    &-ul {
-      padding: 0;
-      margin: 0;
-    }
-
-    &-list {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      & > span {
-        margin-right: 10px;
-      }
-
-      & > * {
-        margin: 2px 0;
-      }
-    }
-  }
-</style>
+<MainLayout>
+  <Home />
+  <Works />
+  <Create />
+  <Links />
+</MainLayout>

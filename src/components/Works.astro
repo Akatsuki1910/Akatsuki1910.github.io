@@ -1,6 +1,7 @@
 ---
-import FaviconImage from '../components/FaviconImage.astro';
-import Layout from '../layouts/Layout.astro';
+import type { ComponentProps } from 'astro/types';
+import ContentsList from './ContentsList.astro';
+import SectionWrapper from './SectionWrapper.astro';
 
 const WOKS = [
   {
@@ -88,60 +89,15 @@ const WOKS = [
     description: "KAYAC engineers' blog 執筆",
     urls: ['https://techblog.kayac.com/get-happy-with-ai-coding'],
   },
-] as const satisfies ReadonlyArray<{
-  day: `${number}-${number}-${number}`;
-  title: string;
-  description: string;
-  urls: string[];
-}>;
+] as const satisfies Required<
+  ComponentProps<typeof ContentsList>['data'][number]
+>[];
 ---
 
-<Layout title="works">
-  <main class="main">
-    {
-      WOKS.toSorted(
-        (a, b) => new Date(a.day).getTime() - new Date(b.day).getTime(),
-      ).map((v) => (
-        <section class="section">
-          <h2>{v.title}</h2>
-          <time datetime={v.day}>{v.day}</time>
-          <p>{v.description}</p>
-          <ul class="ul">
-            {v.urls.sort().map((url) => (
-              <li class="li">
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                  <FaviconImage url={url} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
-  </main>
-</Layout>
-
-<style lang="scss">
-  .main {
-    display: grid;
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .section {
-    padding: 8px;
-    border: 1px solid gray;
-    border-radius: 8px;
-  }
-
-  .ul {
-    display: flex;
-    gap: 8px;
-    padding: 0;
-  }
-
-  .li {
-    list-style: none;
-  }
-</style>
+<SectionWrapper id="works">
+  <ContentsList
+    data={WOKS.toSorted(
+      (a, b) => new Date(a.day).getTime() - new Date(b.day).getTime(),
+    )}
+  />
+</SectionWrapper>
