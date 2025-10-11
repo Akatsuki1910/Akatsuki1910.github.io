@@ -95,9 +95,19 @@ const WOKS = [
 ---
 
 <SectionWrapper id="works">
-  <ContentsList
-    data={WOKS.toSorted(
-      (a, b) => new Date(b.day).getTime() - new Date(a.day).getTime(),
-    )}
-  />
+  <div class="wrapper">
+    <ContentsList
+      data={WOKS.toSorted(
+        (a, b) => new Date(b.day).getTime() - new Date(a.day).getTime(),
+      )}
+    />
+  </div>
 </SectionWrapper>
+
+<style lang="scss">
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+</style>

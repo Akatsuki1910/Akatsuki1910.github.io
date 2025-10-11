@@ -41,5 +41,15 @@ const CREATES = [
 ---
 
 <SectionWrapper id="create">
-  <ContentsList data={CREATES} />
+  <div class="wrapper">
+    <ContentsList data={CREATES} />
+  </div>
 </SectionWrapper>
+
+<style lang="scss">
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+</style>

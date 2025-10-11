@@ -44,7 +44,9 @@ const { data } = Astro.props;
     flex-direction: column;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 8px;
+    max-width: 1200px;
     padding: 8px;
+    margin: 0 20px;
 
     @include is-sp {
       grid-template-columns: 1fr;
