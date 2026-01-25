@@ -31,15 +31,7 @@ const LINKS = [
       {
         LINKS.map((v) => (
           <li class="li">
-            <a
-              class="a"
-              href={v.url}
-              translate="no"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaviconImage url={v.url} />
-            </a>
+            <FaviconImage url={v.url} />
           </li>
         ))
       }
@@ -65,12 +57,9 @@ const LINKS = [
   }
 
   .li {
-    list-style: none;
-  }
-
-  .a {
     display: flex;
     gap: 10px;
     align-items: center;
+    list-style: none;
   }
 </style>

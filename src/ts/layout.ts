@@ -32,4 +32,15 @@ window.addEventListener('load', () => {
       }
     });
   });
+
+  (
+    [...document.getElementsByClassName('tooltip')] as HTMLSpanElement[]
+  ).forEach((tooltip) => {
+    const tooltipR = tooltip.getBoundingClientRect();
+    const w = tooltipR.width;
+    const l = tooltipR.left;
+    const r = tooltipR.right;
+    const vw = window.innerWidth;
+    tooltip.style.left = `calc(50% - ${Math.min(l, 0) + Math.max(r - vw, 0)}px)`;
+  });
 });

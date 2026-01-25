@@ -27,9 +27,7 @@ const { data } = Astro.props;
         <ul class="ul">
           {v.urls.sort().map((url) => (
             <li class="li">
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                <FaviconImage url={url} />
-              </a>
+              <FaviconImage url={url} />
             </li>
           ))}
         </ul>
