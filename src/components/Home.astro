@@ -4,6 +4,39 @@ import iconImage from '../images/akatsuki1910.webp';
 import SectionWrapper from './SectionWrapper.astro';
 ---
 
+<script lang="ts" is:inline>
+  function updateAge() {
+    const ageElement = document.getElementById('age-display');
+    if (!ageElement) return;
+
+    const now = new Date();
+    const birthDate = new Date(2001, 8 - 1, 16);
+    const nowYearBirthDate = new Date(
+      now.getFullYear(),
+      birthDate.getMonth(),
+      birthDate.getDate(),
+    );
+
+    const age =
+      now.getFullYear() -
+      birthDate.getFullYear() -
+      (now > nowYearBirthDate ? 0 : 1);
+
+    const sub =
+      now - birthDate + now.getTimezoneOffset() * 60000 + 9 * 60 * 60000;
+
+    const seconds = Math.floor(sub / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    ageElement.textContent = `${age}y/o (${days}d,${hours % 24}h,${minutes % 60}m,${seconds % 60}s)`;
+
+    window.requestAnimationFrame(updateAge);
+  }
+  window.requestAnimationFrame(updateAge);
+</script>
+
 <SectionWrapper id="home" isFilled>
   <div class="main">
     <h1 class="icon-wrapper">
@@ -17,33 +50,30 @@ import SectionWrapper from './SectionWrapper.astro';
       </figure>
     </h1>
     <div class="profile">
-      <h2><span class="material-symbols-outlined">check</span></h2>
+      <h2>
+        <span class="material-symbols-outlined" translate="no">check</span>
+      </h2>
       <address>
         <ul class="profile-ul">
           <li class="profile-list">
-            <span class="material-symbols-outlined">face</span>
+            <span class="material-symbols-outlined" translate="no">face</span>
             <p>
               <ruby>中村<rp>(</rp><rt>ナカムラ</rt><rp>)</rp></ruby>
               <ruby>育豊<rp>(</rp><rt>イクト</rt><rp>)</rp></ruby>
             </p>
           </li>
           <li class="profile-list">
-            <span class="material-symbols-outlined">cake</span>
+            <span class="material-symbols-outlined" translate="no">cake</span>
             <time datetime="2001-08-16">2001/08/16</time>
           </li>
           <li class="profile-list">
-            <span class="material-symbols-outlined">person_search</span>
-            <p>
-              {
-                Math.floor(
-                  (Date.now() - new Date(2001, 8 - 1, 16).getTime()) /
-                    (365 * 24 * 60 * 60 * 1000),
-                )
-              }y/o
-            </p>
+            <span class="material-symbols-outlined" translate="no">
+              person_search
+            </span>
+            <p id="age-display">solve...</p>
           </li>
           <li class="profile-list">
-            <span class="material-symbols-outlined">mail</span>
+            <span class="material-symbols-outlined" translate="no">mail</span>
             <a href="mailto:akatsukicirno@gmail.com">akatsukicirno@gmail.com</a>
           </li>
         </ul>

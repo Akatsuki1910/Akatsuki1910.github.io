@@ -42,6 +42,8 @@
       "braces@<3.0.3": ">=3.0.3"
     },
     "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
       "sharp"
     ]
   }
