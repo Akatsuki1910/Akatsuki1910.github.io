@@ -1,4 +1,13 @@
-$header-height: 80px;
+// Design tokens
+$header-height: 72px;
+$color-bg: #0a0a0a;
+$color-surface: #141414;
+$color-border: rgba(255, 255, 255, 0.08);
+$color-border-hover: rgba(255, 255, 255, 0.15);
+$color-text: #f0f0f0;
+$color-text-secondary: #888;
+$color-accent: #3b82f6;
+$color-accent-hover: #60a5fa;
 
 @mixin eye-over($property, $isReverse: false) {
   &::before,
@@ -9,8 +18,9 @@ $header-height: 80px;
     height: 100%;
     pointer-events: none;
     content: '';
-    background-color: black;
-    transition-duration: 0.4s;
+    background-color: $color-bg;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
     transition-property: top, bottom;
   }
 
@@ -40,12 +50,47 @@ $header-height: 80px;
 }
 
 a {
-  color: white;
+  color: $color-text;
   text-decoration: none;
-  transition-duration: 0.2s;
-  transition-property: color;
+  transition: color 0.3s ease;
 
   &:hover {
-    color: #d9f70e;
+    color: $color-accent-hover;
+  }
+}
+
+// Scroll reveal animation
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Stagger children animation
+[data-stagger] {
+  > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.06}s;
+      }
+    }
   }
 }

@@ -5,12 +5,12 @@ import SectionWrapper from './SectionWrapper.astro';
 ---
 
 <script lang="ts" is:inline>
-  function updateAge() {
-    const ageElement = document.getElementById('age-display');
-    if (!ageElement) return;
+  const ageElement = document.getElementById('age-display');
+  if (!ageElement) return;
+  const birthDate = new Date(2001, 8 - 1, 16);
 
+  function updateAge() {
     const now = new Date();
-    const birthDate = new Date(2001, 8 - 1, 16);
     const nowYearBirthDate = new Date(
       now.getFullYear(),
       birthDate.getMonth(),
@@ -30,7 +30,7 @@ import SectionWrapper from './SectionWrapper.astro';
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    ageElement.textContent = `${age}y/o (${days}d,${hours % 24}h,${minutes % 60}m,${seconds % 60}s)`;
+    ageElement.textContent = `${age}y ${days}d ${hours % 24}h ${minutes % 60}m ${seconds % 60}s`;
 
     window.requestAnimationFrame(updateAge);
   }
@@ -38,42 +38,53 @@ import SectionWrapper from './SectionWrapper.astro';
 </script>
 
 <SectionWrapper id="home" isFilled>
-  <div class="main">
-    <h1 class="icon-wrapper">
-      <figure>
+  <div class="hero">
+    <div class="hero-visual" data-animate>
+      <figure class="avatar">
         <Image
           src={iconImage}
           alt={'akatsuki1910'}
-          class="icon"
+          class="avatar-img"
           loading={'lazy'}
         />
       </figure>
-    </h1>
-    <div class="profile">
-      <h2>
-        <span class="material-symbols-outlined" translate="no">check</span>
-      </h2>
-      <address>
-        <ul class="profile-ul">
-          <li class="profile-list">
-            <span class="material-symbols-outlined" translate="no">face</span>
+    </div>
+
+    <div class="hero-info" data-animate>
+      <h1 class="name">
+        <span class="name-label">akatsuki1910</span>
+        <span class="material-symbols-outlined verified" translate="no"
+          >check</span
+        >
+      </h1>
+
+      <address class="profile">
+        <ul class="profile-list" data-stagger>
+          <li class="profile-item">
+            <span class="material-symbols-outlined profile-icon" translate="no"
+              >face</span
+            >
             <p>
               <ruby>中村<rp>(</rp><rt>ナカムラ</rt><rp>)</rp></ruby>
               <ruby>育豊<rp>(</rp><rt>イクト</rt><rp>)</rp></ruby>
             </p>
           </li>
-          <li class="profile-list">
-            <span class="material-symbols-outlined" translate="no">cake</span>
+          <li class="profile-item">
+            <span class="material-symbols-outlined profile-icon" translate="no"
+              >cake</span
+            >
             <time datetime="2001-08-16">2001/08/16</time>
           </li>
-          <li class="profile-list">
-            <span class="material-symbols-outlined" translate="no">
+          <li class="profile-item">
+            <span class="material-symbols-outlined profile-icon" translate="no">
               person_search
             </span>
-            <p id="age-display">solve...</p>
+            <p id="age-display" class="age-counter">solve...</p>
           </li>
-          <li class="profile-list">
-            <span class="material-symbols-outlined" translate="no">mail</span>
+          <li class="profile-item">
+            <span class="material-symbols-outlined profile-icon" translate="no"
+              >mail</span
+            >
             <a href="mailto:akatsukicirno@gmail.com">akatsukicirno@gmail.com</a>
           </li>
         </ul>
@@ -83,51 +94,115 @@ import SectionWrapper from './SectionWrapper.astro';
 </SectionWrapper>
 
 <style lang="scss">
-  .main {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .avatar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1px $color-border,
+      0 0 40px rgba($color-accent, 0.15);
+
+    @include is-sp {
+      width: 160px;
+      height: 160px;
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .hero-info {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
-  .icon-wrapper {
-    max-width: 440px;
+  .name {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 
     @include is-sp {
-      width: 70vw;
-    }
-
-    figure {
-      margin: 0;
+      font-size: 1.5rem;
     }
   }
 
-  .icon {
-    width: 100%;
-    height: auto;
+  .verified {
+    font-size: 24px;
+    color: $color-accent;
   }
 
   .profile {
+    margin-top: 24px;
+    font-style: normal;
+  }
+
+  .profile-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
 
-    &-ul {
-      padding: 0;
+  .profile-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 0.95rem;
+    color: $color-text-secondary;
+    list-style: none;
+
+    p,
+    time,
+    a {
       margin: 0;
     }
 
-    &-list {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    a {
+      color: $color-text-secondary;
 
-      & > span {
-        margin-right: 10px;
-      }
-
-      & > * {
-        margin: 2px 0;
+      &:hover {
+        color: $color-accent-hover;
       }
     }
+  }
+
+  .profile-icon {
+    font-size: 20px;
+    color: $color-accent;
+  }
+
+  .age-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
   }
 </style>

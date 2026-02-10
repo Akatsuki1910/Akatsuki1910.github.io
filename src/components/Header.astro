@@ -12,7 +12,7 @@ import { LINKS } from '../ts/pageLinks';
               <span class="material-symbols-outlined nav-li-icon">
                 {v.text}
               </span>
-              {v.title}
+              <span class="nav-li-label">{v.title}</span>
             </a>
           </li>
         ))
@@ -26,51 +26,84 @@ import { LINKS } from '../ts/pageLinks';
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 100;
     width: 100%;
     height: $header-height;
-    background: linear-gradient(to bottom, rgb(0 0 0 / 100%), rgb(0 0 0 / 0%));
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid $color-border;
   }
 
   .nav {
-    z-index: 100;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 
     &-ul {
-      position: relative;
-      z-index: 1;
       display: flex;
-      gap: 20px;
+      gap: 32px;
       padding: 0;
+      margin: 0;
 
       @include is-sp {
-        gap: 1vw;
+        gap: 16px;
       }
     }
   }
 
   .nav-li {
     padding: 0;
-    font-size: large;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     list-style: none;
 
     @include is-sp {
-      font-size: 4vw;
+      font-size: 0.75rem;
     }
 
     & > a {
+      position: relative;
       display: flex;
-      gap: 5px;
+      gap: 6px;
       align-items: center;
+      padding: 8px 4px;
+      color: $color-text-secondary;
+      transition: color 0.3s ease;
 
-      @include is-sp {
-        gap: 0.5vw;
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        content: '';
+        background-color: $color-accent;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       }
+
+      &:hover {
+        color: $color-text;
+
+        &::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
+  }
+
+  .nav-li-icon {
+    font-size: 18px;
+
+    @include is-sp {
+      font-size: 16px;
     }
   }
 </style>

@@ -8,10 +8,12 @@ import Favicons from '../components/Favicons.astro';
     <meta name="description" content="aktk1910.com" />
     <meta name="viewport" content="width=device-width" />
     <meta name="author" content="akatsuki1910" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0a0a0a" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <style>
-      @import 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap';
+      @import 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Sans+JP:wght@100..900&display=swap';
     </style>
     <link
       rel="stylesheet"
@@ -35,9 +37,16 @@ import Favicons from '../components/Favicons.astro';
   </head>
   <body>
     <slot />
-    <!-- <Loading /> -->
   </body>
 </html>
+
+<style lang="scss" is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+</style>
 
 <style lang="scss">
   html,
@@ -48,8 +57,11 @@ import Favicons from '../components/Favicons.astro';
     margin: 0;
     overflow-x: hidden;
     font-family: 'Noto Sans JP', sans-serif;
-    color: white;
-    background-color: black;
+    line-height: 1.6;
+    color: $color-text;
+    background-color: $color-bg;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {

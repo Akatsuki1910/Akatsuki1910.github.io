@@ -33,6 +33,7 @@ window.addEventListener('load', () => {
     });
   });
 
+  // Tooltip repositioning
   new ResizeObserver(() => {
     (
       [...document.getElementsByClassName('tooltip')] as HTMLSpanElement[]
@@ -45,4 +46,21 @@ window.addEventListener('load', () => {
       tooltip.style.left = `calc(50% - ${Math.min(l, 0) + Math.max(r - vw, 0)}px)`;
     });
   }).observe(document.body);
+
+  // Scroll-reveal animations
+  const animateObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          animateObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+  );
+
+  document
+    .querySelectorAll('[data-animate], [data-stagger]')
+    .forEach((el) => animateObserver.observe(el));
 });
