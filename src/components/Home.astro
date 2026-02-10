@@ -5,12 +5,12 @@ import SectionWrapper from './SectionWrapper.astro';
 ---
 
 <script lang="ts" is:inline>
-  const ageElement = document.getElementById('age-display');
-  if (!ageElement) return;
-  const birthDate = new Date(2001, 8 - 1, 16);
-
   function updateAge() {
+    const ageElement = document.getElementById('age-display');
+    if (!ageElement) return;
+
     const now = new Date();
+    const birthDate = new Date(2001, 8 - 1, 16);
     const nowYearBirthDate = new Date(
       now.getFullYear(),
       birthDate.getMonth(),
