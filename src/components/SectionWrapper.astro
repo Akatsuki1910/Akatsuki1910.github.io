@@ -16,6 +16,7 @@ const title = LINKS[id].title;
       if (title !== 'HOME') {
         return (
           <h2 class="section-title" data-animate>
+            <span class="section-title-line" />
             <span class="section-title-text">{title}</span>
             <span class="section-title-line" />
           </h2>
@@ -43,19 +44,19 @@ const title = LINKS[id].title;
 
   .section-title {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
-    margin: 48px 0 32px;
+    margin: 56px 0 36px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     color: $color-text-secondary;
     text-transform: uppercase;
 
     @include is-sp {
-      margin: 32px 0 24px;
+      margin: 36px 0 24px;
     }
   }
 
@@ -65,8 +66,13 @@ const title = LINKS[id].title;
 
   .section-title-line {
     display: block;
-    width: 40px;
+    width: 32px;
     height: 1px;
-    background-color: $color-accent;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $color-accent,
+      transparent
+    );
   }
 </style>

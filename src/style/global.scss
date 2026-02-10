@@ -1,13 +1,14 @@
 // Design tokens
 $header-height: 72px;
 $color-bg: #0a0a0a;
-$color-surface: #141414;
+$color-surface: #111;
 $color-border: rgba(255, 255, 255, 0.08);
-$color-border-hover: rgba(255, 255, 255, 0.15);
+$color-border-hover: rgba(255, 255, 255, 0.2);
 $color-text: #f0f0f0;
-$color-text-secondary: #888;
+$color-text-secondary: #666;
 $color-accent: #3b82f6;
 $color-accent-hover: #60a5fa;
+$transition-duration: 0.2s;
 
 @mixin eye-over($property, $isReverse: false) {
   &::before,
@@ -19,7 +20,7 @@ $color-accent-hover: #60a5fa;
     pointer-events: none;
     content: '';
     background-color: $color-bg;
-    transition-duration: 0.5s;
+    transition-duration: $transition-duration;
     transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
     transition-property: top, bottom;
   }
@@ -52,20 +53,20 @@ $color-accent-hover: #60a5fa;
 a {
   color: $color-text;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color $transition-duration ease;
 
   &:hover {
     color: $color-accent-hover;
   }
 }
 
-// Scroll reveal animation
+// Scroll reveal
 [data-animate] {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
   transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity $transition-duration ease,
+    transform $transition-duration ease;
 
   &.is-visible {
     opacity: 1;
@@ -73,14 +74,14 @@ a {
   }
 }
 
-// Stagger children animation
+// Stagger children
 [data-stagger] {
   > * {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
     transition:
-      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity $transition-duration ease,
+      transform $transition-duration ease;
   }
 
   &.is-visible > * {
@@ -89,7 +90,7 @@ a {
 
     @for $i from 1 through 20 {
       &:nth-child(#{$i}) {
-        transition-delay: #{$i * 0.06}s;
+        transition-delay: #{$i * 0.02}s;
       }
     }
   }

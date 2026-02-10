@@ -51,17 +51,38 @@ const { data } = Astro.props;
 
   .card {
     position: relative;
-    padding: 20px;
+    padding: 20px 20px 20px 24px;
     background: $color-surface;
     border: 1px solid $color-border;
     border-radius: 12px;
     transition:
-      border-color 0.4s ease,
-      background 0.4s ease;
+      border-color $transition-duration ease,
+      background $transition-duration ease,
+      transform $transition-duration ease,
+      box-shadow $transition-duration ease;
+
+    &::before {
+      position: absolute;
+      top: 12px;
+      bottom: 12px;
+      left: 0;
+      width: 2px;
+      content: '';
+      background: $color-accent;
+      border-radius: 1px;
+      opacity: 0;
+      transition: opacity $transition-duration ease;
+    }
 
     &:hover {
-      background: #1a1a1a;
+      background: #161616;
       border-color: $color-border-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+      &::before {
+        opacity: 1;
+      }
     }
   }
 
@@ -69,20 +90,21 @@ const { data } = Astro.props;
     display: block;
     margin-bottom: 8px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: $color-text-secondary;
+    letter-spacing: 0.05em;
   }
 
   .card-title {
     margin: 0 0 8px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .card-desc {
     margin: 0 0 16px;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: $color-text-secondary;
     line-height: 1.5;
   }

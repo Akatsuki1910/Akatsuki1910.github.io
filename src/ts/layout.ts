@@ -1,5 +1,7 @@
 import { timeAwait } from './utils';
 
+const TRANSITION_MS = 250;
+
 window.addEventListener('load', () => {
   const show = () => (document.body.dataset.loaded = 'true');
   const hide = () => (document.body.dataset.loaded = 'false');
@@ -22,7 +24,7 @@ window.addEventListener('load', () => {
       }
       if (!href.includes('mailto:')) {
         hide();
-        await timeAwait(200);
+        await timeAwait(TRANSITION_MS);
       }
 
       if (v.getAttribute('target') === '_blank') {
@@ -39,7 +41,6 @@ window.addEventListener('load', () => {
       [...document.getElementsByClassName('tooltip')] as HTMLSpanElement[]
     ).forEach((tooltip) => {
       const tooltipR = tooltip.getBoundingClientRect();
-      const w = tooltipR.width;
       const l = tooltipR.left;
       const r = tooltipR.right;
       const vw = window.innerWidth;
