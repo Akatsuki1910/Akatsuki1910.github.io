@@ -9,7 +9,7 @@ import { LINKS } from '../ts/pageLinks';
         Object.entries(LINKS).map(([t, v]) => (
           <li class="nav-li">
             <a href={`#${t}`} aria-label={v.title}>
-              <span class="material-symbols-outlined nav-li-icon">
+              <span class="material-symbols-outlined nav-li-icon" translate="no">
                 {v.text}
               </span>
               <span class="nav-li-label">{v.title}</span>
