@@ -26,20 +26,36 @@ $transition-duration: 0.2s;
   }
 
   &::before {
-    top: if($isReverse, -100%, 0);
+    @if $isReverse {
+      top: -100%;
+    } @else {
+      top: 0;
+    }
   }
 
   &::after {
-    bottom: if($isReverse, -100%, 0);
+    @if $isReverse {
+      bottom: -100%;
+    } @else {
+      bottom: 0;
+    }
   }
 
   &[#{$property}='true'] {
     &::before {
-      top: if($isReverse, 0, -100%);
+      @if $isReverse {
+        top: 0;
+      } @else {
+        top: -100%;
+      }
     }
 
     &::after {
-      bottom: if($isReverse, 0, -100%);
+      @if $isReverse {
+        bottom: 0;
+      } @else {
+        bottom: -100%;
+      }
     }
   }
 }

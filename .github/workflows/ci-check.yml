@@ -1,0 +1,26 @@
+name: ci-check
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  ci-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v6
+
+      - name: Install packages
+        run: pnpm install
+      - name: Lint Check
+        run: pnpm lint
+      - name: Build Check
+        run: pnpm build
+  deploy:
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    needs: ci-check
+    uses: ./.github/workflows/deploy.yml

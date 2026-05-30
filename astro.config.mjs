@@ -1,6 +1,5 @@
-import { defineConfig } from 'astro/config';
-
 import partytown from '@astrojs/partytown';
+import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,10 +8,7 @@ export default defineConfig({
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
-        },
-        scss: {
-          api: 'legacy',
-          additionalData: '@use "src/style/global.scss" as *;',
+          additionalData: '@use "/src/style/global.scss" as *;',
         },
       },
     },

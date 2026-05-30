@@ -61,7 +61,7 @@ window.addEventListener('load', () => {
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
   );
 
-  document
-    .querySelectorAll('[data-animate], [data-stagger]')
-    .forEach((el) => animateObserver.observe(el));
+  document.querySelectorAll('[data-animate], [data-stagger]').forEach((el) => {
+    animateObserver.observe(el);
+  });
 });
