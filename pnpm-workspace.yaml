@@ -2,6 +2,6 @@ allowBuilds:
   '0': '@parcel/watcher'
   '1': esbuild
   '2': sharp
-  '@parcel/watcher': set this to true or false
+  '@parcel/watcher': false
 overrides:
   "braces@<3.0.3": ">=3.0.3"

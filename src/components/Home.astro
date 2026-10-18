@@ -30,7 +30,9 @@ import SectionWrapper from './SectionWrapper.astro';
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    ageElement.textContent = `${age}y/o (${days}d ${hours % 24}h ${minutes % 60}m ${seconds % 60}s)`;
+    const pad = (n) => String(n).padStart(2, '0');
+
+    ageElement.textContent = `${age}y/o (${days}d ${pad(hours % 24)}h ${pad(minutes % 60)}m ${pad(seconds % 60)}s)`;
 
     window.requestAnimationFrame(updateAge);
   }
@@ -55,10 +57,6 @@ import SectionWrapper from './SectionWrapper.astro';
     <div class="hero-info" data-animate>
       <h1 class="name">
         <span class="name-label">akatsuki1910</span>
-        <span class="cursor" aria-hidden="true"></span>
-        <span class="material-symbols-outlined verified" translate="no"
-          >check</span
-        >
       </h1>
 
       <address class="profile">
@@ -86,6 +84,16 @@ import SectionWrapper from './SectionWrapper.astro';
           </li>
           <li class="profile-item">
             <span class="material-symbols-outlined profile-icon" translate="no"
+              >location_on</span
+            >
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Cebu%2C%20Philippines"
+              target="_blank"
+              rel="noopener noreferrer">Cebu, Philippines</a
+            >
+          </li>
+          <li class="profile-item">
+            <span class="material-symbols-outlined profile-icon" translate="no"
               >mail</span
             >
             <a href="mailto:akatsukicirno@gmail.com">akatsukicirno@gmail.com</a>
@@ -100,17 +108,6 @@ import SectionWrapper from './SectionWrapper.astro';
   @keyframes ring-rotate {
     to {
       transform: rotate(360deg);
-    }
-  }
-
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0;
     }
   }
 
@@ -131,22 +128,18 @@ import SectionWrapper from './SectionWrapper.astro';
 
   .avatar-ring {
     position: relative;
-    padding: 3px;
-    background: conic-gradient(
-      $color-accent,
-      transparent 30%,
-      $color-accent 70%,
-      transparent
-    );
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 50%;
-    animation: ring-rotate 4s linear infinite;
 
     &::before {
       position: absolute;
-      inset: 3px;
+      inset: -12px;
+      pointer-events: none;
       content: '';
-      background: $color-bg;
+      border: 1px dashed rgba(255, 255, 255, 0.3);
       border-radius: 50%;
+      animation: ring-rotate 30s linear infinite;
     }
   }
 
@@ -194,26 +187,7 @@ import SectionWrapper from './SectionWrapper.astro';
   }
 
   .name-label {
-    background: linear-gradient(
-      90deg,
-      $color-text 0%,
-      $color-text-secondary 100%
-    );
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1.2em;
-    background: $color-accent;
-    animation: blink 1s step-end infinite;
-  }
-
-  .verified {
-    font-size: 24px;
-    color: $color-accent;
+    color: $color-text;
   }
 
   .profile {
