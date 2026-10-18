@@ -1,0 +1,157 @@
+---
+
+---
+
+<canvas class="background" id="background-canvas" aria-hidden="true"></canvas>
+
+<script>
+  import {
+    Mesh,
+    OrthographicCamera,
+    PlaneGeometry,
+    Scene,
+    ShaderMaterial,
+    Vector2,
+    WebGLRenderer,
+  } from 'three';
+  import fragmentShader from '../glsl/background.frag?raw';
+  import vertexShader from '../glsl/background.vert?raw';
+
+  const MAX_PIXEL_RATIO = 1.5;
+  // Exponential easing rates (per second). Higher = snappier.
+  const MOUSE_FOLLOW_RATE = 4;
+  const MOUSE_FADE_IN_RATE = 3;
+  const MOUSE_FADE_OUT_RATE = 2;
+
+  const canvas = document.getElementById(
+    'background-canvas',
+  ) as HTMLCanvasElement | null;
+
+  const init = (canvas: HTMLCanvasElement) => {
+    let renderer: WebGLRenderer;
+    try {
+      renderer = new WebGLRenderer({
+        canvas,
+        antialias: false,
+        alpha: false,
+        powerPreference: 'low-power',
+      });
+    } catch {
+      // WebGL unavailable: keep the plain background color
+      return;
+    }
+
+    const scene = new Scene();
+    const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    const uniforms = {
+      uTime: { value: 0 },
+      uResolution: { value: new Vector2() },
+      uMouse: { value: new Vector2(0.5, 0.5) },
+      uMouseStrength: { value: 0 },
+      uScroll: { value: 0 },
+    };
+
+    const material = new ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms,
+      depthTest: false,
+      depthWrite: false,
+    });
+    scene.add(new Mesh(new PlaneGeometry(2, 2), material));
+
+    const resize = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
+      renderer.setSize(w, h, false);
+      uniforms.uResolution.value.set(w, h);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Mouse position in UV space (0..1, origin bottom-left).
+    // The glow fades in/out via uMouseStrength rather than moving off-screen.
+    const mouseTarget = new Vector2(0.5, 0.5);
+    let isMouseInside = false;
+
+    window.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const x = e.clientX / window.innerWidth;
+      const y = 1 - e.clientY / window.innerHeight;
+      // If the glow is (almost) invisible, place it directly at the cursor
+      // so it fades in where the mouse is instead of sliding over from afar
+      if (uniforms.uMouseStrength.value < 0.05) {
+        uniforms.uMouse.value.set(x, y);
+      }
+      mouseTarget.set(x, y);
+      isMouseInside = true;
+    });
+
+    document.addEventListener('pointerout', (e) => {
+      // relatedTarget is null when the pointer leaves the window
+      if (!e.relatedTarget) isMouseInside = false;
+    });
+    window.addEventListener('blur', () => {
+      isMouseInside = false;
+    });
+
+    const scrollValue = () => (window.scrollY / window.innerHeight) * 0.25;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const ease = (rate: number, dt: number) => 1 - Math.exp(-rate * dt);
+
+    let lastTime = 0;
+    const render = (time: number) => {
+      const dt = Math.min((time - lastTime) / 1000, 0.1);
+      lastTime = time;
+
+      uniforms.uTime.value = time / 1000;
+      uniforms.uScroll.value = scrollValue();
+      uniforms.uMouse.value.lerp(mouseTarget, ease(MOUSE_FOLLOW_RATE, dt));
+
+      const strength = uniforms.uMouseStrength.value;
+      const strengthTarget = isMouseInside ? 1 : 0;
+      const fadeRate =
+        strengthTarget > strength ? MOUSE_FADE_IN_RATE : MOUSE_FADE_OUT_RATE;
+      uniforms.uMouseStrength.value +=
+        (strengthTarget - strength) * ease(fadeRate, dt);
+
+      renderer.render(scene, camera);
+    };
+
+    if (reducedMotion.matches) {
+      // Static frame only; re-render on resize/scroll
+      const renderStatic = () => render(0);
+      renderStatic();
+      window.addEventListener('resize', renderStatic);
+      window.addEventListener('scroll', renderStatic, { passive: true });
+    } else {
+      renderer.setAnimationLoop(render);
+    }
+
+    canvas.dataset.ready = 'true';
+  };
+
+  if (canvas) init(canvas);
+</script>
+
+<style lang="scss">
+  .background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+
+    &[data-ready='true'] {
+      opacity: 1;
+    }
+  }
+</style>
