@@ -1,6 +1,6 @@
 export const LINKS = {
-  home: { text: 'home', title: 'HOME' },
-  works: { text: 'work', title: 'WORKS' },
-  create: { text: 'create', title: 'CREATE' },
-  links: { text: 'link', title: 'LINKS' },
+  home: { icon: 'home', title: 'HOME' },
+  works: { icon: 'work', title: 'WORKS' },
+  create: { icon: 'create', title: 'CREATE' },
+  links: { icon: 'link', title: 'LINKS' },
 } as const;

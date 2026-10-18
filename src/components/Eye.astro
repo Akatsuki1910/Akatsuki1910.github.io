@@ -28,20 +28,17 @@ const height = y * 2;
 <script is:inline define:vars={{ width, height, id, cx, cy, circleId }}>
   const normalizeMove = (n) => Math.log(Math.abs(n) + 1) * (n < 0 ? -1 : 1) * 2;
 
-  window.addEventListener("mousemove", (e) => {
-    e.preventDefault();
-
+  window.addEventListener('mousemove', (e) => {
     const d = document.getElementById(id);
     const c = document.getElementById(circleId);
+    if (!d || !c) return;
 
-    const dx = d.getBoundingClientRect().left;
-    const dy = d.getBoundingClientRect().top;
+    const rect = d.getBoundingClientRect();
+    const fixMx = normalizeMove(e.clientX - (rect.left + width / 2));
+    const fixMy = normalizeMove(e.clientY - (rect.top + height / 2));
 
-    const fixMx = normalizeMove(e.clientX - (dx + width / 2));
-    const fixMy = normalizeMove(e.clientY - (dy + height / 2));
-
-    c.setAttribute("cx", cx + fixMx);
-    c.setAttribute("cy", cy + fixMy);
+    c.setAttribute('cx', String(cx + fixMx));
+    c.setAttribute('cy', String(cy + fixMy));
   });
 </script>
 

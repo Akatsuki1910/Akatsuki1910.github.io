@@ -25,7 +25,7 @@ const { data } = Astro.props;
         <h3 class="card-title">{v.title}</h3>
         <p class="card-desc">{v.description}</p>
         <ul class="card-links">
-          {v.urls.sort().map((url) => (
+          {v.urls.toSorted().map((url) => (
             <li class="card-link-item">
               <FaviconImage url={url} />
             </li>

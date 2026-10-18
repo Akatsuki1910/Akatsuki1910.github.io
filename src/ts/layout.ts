@@ -2,36 +2,52 @@ import { timeAwait } from './utils';
 
 const TRANSITION_MS = 250;
 
-window.addEventListener('load', () => {
+const init = () => {
   const show = () => (document.body.dataset.loaded = 'true');
   const hide = () => (document.body.dataset.loaded = 'false');
   show();
 
   window.addEventListener('pageshow', show);
-  document.addEventListener('visibilitychange', show);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') show();
+  });
 
   document.querySelectorAll('a').forEach((v) => {
     v.addEventListener('click', async (e) => {
-      e.preventDefault();
+      // Allow browser defaults for modified clicks, non-primary clicks, or already prevented clicks
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey
+      ) {
+        return;
+      }
 
       const href = v.getAttribute('href');
-      if (!href) return;
+      if (!href || href === '#') {
+        e.preventDefault();
+        return;
+      }
 
-      if (href === '#') return;
       if (href.startsWith('#')) {
+        e.preventDefault();
         document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
         return;
       }
-      if (!href.includes('mailto:')) {
-        hide();
-        await timeAwait(TRANSITION_MS);
+
+      // External new-tab links and mailto should follow standard browser navigation
+      if (v.getAttribute('target') === '_blank' || href.startsWith('mailto:')) {
+        return;
       }
 
-      if (v.getAttribute('target') === '_blank') {
-        window.open(href, '_blank');
-      } else {
-        window.location.href = href;
-      }
+      // In-page navigation with transition
+      e.preventDefault();
+      hide();
+      await timeAwait(TRANSITION_MS);
+      window.location.href = href;
     });
   });
 
@@ -64,4 +80,10 @@ window.addEventListener('load', () => {
   document.querySelectorAll('[data-animate], [data-stagger]').forEach((el) => {
     animateObserver.observe(el);
   });
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}

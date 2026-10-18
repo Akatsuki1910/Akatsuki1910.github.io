@@ -19,13 +19,13 @@ const urlObject = new URL(url);
   class="favicon-link"
 >
   <Image
-    src={`http://www.google.com/s2/favicons?sz=${48}&domain=${urlObject.origin}`}
+    src={`https://www.google.com/s2/favicons?sz=48&domain=${urlObject.origin}`}
     alt={urlObject.hostname}
     width={size}
     height={size}
     loading={'lazy'}
   />
-  <span class="tooltip" id="tooltip" translate="no">
+  <span class="tooltip" translate="no">
     {url}
   </span>
 </a>
