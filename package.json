@@ -15,7 +15,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.12",
     "@astrojs/partytown": "2.1.8",
-    "astro": "^7.4.1",
+    "astro": "^7.4.2",
     "sharp": "^0.35.0",
     "three": "^0.186.1",
     "typescript": "^6.0.3"
