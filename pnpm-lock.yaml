@@ -24,8 +24,8 @@ importers:
         specifier: ^0.35.0
         version: 0.35.5
       three:
-        specifier: ^0.186.1
-        version: 0.186.1
+        specifier: ^0.187.0
+        version: 0.187.0
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -1581,8 +1581,8 @@ packages:
     resolution: {integrity: sha512-gAQ9qrUN/UCypHtGFbbe7Rc/f9bzO88IwrG8TDo/aMKAApKyD6E3W4Cm0EfhfBb6Z6SKt59tTCTfD+n1xmAvMg==}
     engines: {node: '>=16.0.0'}
 
-  three@0.186.1:
-    resolution: {integrity: sha512-blFeqb49wRCSGUGj7gtpfnSGHy2lwDk94RhUmS1c/hTby70kvChbWpkJ4Pm1390LqzzvTmzgXKHPEafJwCb8jA==}
+  three@0.187.0:
+    resolution: {integrity: sha512-Qiu7R+Cmh8CstZsY1uJOSWnVlfo7ZtNLV7mF8Jltk3LB3AtDu9cRZlcnRKkAk8Y4z6KKw35z7Y7Urd7jWY8etA==}
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
@@ -3384,7 +3384,7 @@ snapshots:
 
   sync-message-port@1.2.0: {}
 
-  three@0.186.1: {}
+  three@0.187.0: {}
 
   tiny-inflate@1.0.3: {}
 
