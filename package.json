@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.4",
-    "@types/three": "^0.186.0",
+    "@types/three": "^0.187.0",
     "sass-embedded": "^1.107.0"
   },
   "engines": {
